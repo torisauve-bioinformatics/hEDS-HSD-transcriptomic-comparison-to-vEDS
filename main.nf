@@ -1,9 +1,11 @@
 nextflow.enable.dsl=2
 
-params.fastq = "/scratch/vks266/transcrip_final/heds/output/fastq/*.fastq.gz"
-params.star_index = "/scratch/vks266/transcrip_final/heds/ampliseq_pipe/hg19_star_index"
-params.gtf = "/scratch/vks266/transcrip_final/heds/ampliseq_pipe/hg19.refGene.gtf"
-params.outdir = "/scratch/vks266/transcrip_final/heds/ampliseq_pipe/results2"
+params.star_index = "${params.ref_dir}/hg19_star_index"
+params.gtf         = "${params.ref_dir}/hg19.refGene.gtf"
+params.fastq  = "${params.data_dir}/*.fastq.gz"
+params.outdir = "${params.data_dir}/results"
+params.ref_dir  = null
+params.data_dir = null
 
 process TRIM {
     container 'quay.io/biocontainers/cutadapt:5.2--py313h8c92656_1'
