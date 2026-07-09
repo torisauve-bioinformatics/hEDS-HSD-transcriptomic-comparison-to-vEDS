@@ -6,8 +6,8 @@ A containerized RNA-seq workflow for processing AmpliSeq-based transcriptomic da
 
 The pipeline has two stages:
 
-1. Nextflow workflow (main.nf): raw FASTQ → trimmed reads → aligned BAM → gene-level counts, with every step running in a pinned Singularity container.
-2. R analysis: count matrices → normalized expression → differential expression (limma-voom) → GO enrichment, with PCA and clustering for sample QC.
+1. **Nextflow workflow (main.nf):** raw FASTQ → trimmed reads → aligned BAM → gene-level counts, with every step running in a pinned Singularity container.
+2. **R analysis:** count matrices → normalized expression → differential expression (limma-voom) → GO enrichment, with PCA and clustering for sample QC.
 
 ```
 FASTQ files
@@ -33,6 +33,7 @@ FASTQ files
     ▼
   R analysis: merge counts → collapse replicates → voom/limma DE → GO enrichment
 ```
+
 
 ## Data source
 
