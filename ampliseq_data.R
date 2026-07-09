@@ -272,8 +272,7 @@ fit2 <- contrasts.fit(fit, contrasts)
 fit2 <- eBayes(fit2)
 
 
-
-get_DEGs <- function(fit, coef, gene_map, fdr = 0.05, lfc = 1) {
+get_DEGs <- function(fit, coef, fdr = 0.05, lfc = 1) {
   # Extract results
   res <- topTable(fit, coef = coef, n = Inf, adjust.method = "BH")
   
@@ -282,7 +281,7 @@ get_DEGs <- function(fit, coef, gene_map, fdr = 0.05, lfc = 1) {
   
   # 3. Merge with gene_map (using dplyr is often cleaner)
   # If using base merge:
-  res <- merge(res, gene_map, by = "gene_id", all.x = TRUE)
+  res <- merge(res, by = "gene_id", all.x = TRUE)
   
   # Restore the row names if they were lost during merge
   rownames(res) <- res$gene_id
@@ -296,11 +295,11 @@ get_DEGs <- function(fit, coef, gene_map, fdr = 0.05, lfc = 1) {
 }
 
 # Apply function for each comparison
-DEGs_HED_vs_ctrl <- get_DEGs(fit2, "HED_vs_control", gene_map)
+DEGs_HED_vs_ctrl <- get_DEGs(fit2, "HED_vs_control")
 nrow(DEGs_HED_vs_ctrl)
-DEGs_HSD_vs_ctrl <- get_DEGs(fit2, "HSD_vs_control", gene_map)
+DEGs_HSD_vs_ctrl <- get_DEGs(fit2, "HSD_vs_control")
 nrow(DEGs_HSD_vs_ctrl)
-DEGs_HED_vs_HSD  <- get_DEGs(fit2, "HED_vs_HSD", gene_map)
+DEGs_HED_vs_HSD  <- get_DEGs(fit2, "HED_vs_HSD")
 nrow(DEGs_HED_vs_HSD)
 
 # Convert to CSV file
@@ -338,10 +337,7 @@ make_volcano(fit2, "HED_vs_control", "Volcano Plot: hEDS vs Control")
 make_volcano(fit2, "HSD_vs_control", "Volcano Plot: HSD vs Control")
 make_volcano(fit2, "HED_vs_HSD",     "Volcano Plot: hEDS vs HSD")
 
-
-
-library(clusterProfiler)
-library(org.Hs.eg.db)
+# Load packages for enrichment 
 library(clusterProfiler)
 library(org.Hs.eg.db)
 
