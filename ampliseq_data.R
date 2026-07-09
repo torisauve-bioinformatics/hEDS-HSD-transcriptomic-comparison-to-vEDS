@@ -279,9 +279,6 @@ get_DEGs <- function(fit, coef, fdr = 0.05, lfc = 1) {
   # Capture gene_id from rownames explicitly
   res$gene_id <- rownames(res)
   
-  # 3. Merge with gene_map (using dplyr is often cleaner)
-  # If using base merge:
-  res <- merge(res, by = "gene_id", all.x = TRUE)
   
   # Restore the row names if they were lost during merge
   rownames(res) <- res$gene_id
