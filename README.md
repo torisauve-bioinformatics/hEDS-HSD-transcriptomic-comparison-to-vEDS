@@ -42,7 +42,7 @@ Raw FASTQ files and sample metadata were retrieved using nf-core/fetchngs, which
 ## Requirements
 
 Nextflow (DSL2)
-Singularity (containers pulled automatically from biocontainers — no manual installs needed)
+Singularity (containers pulled automatically from biocontainers, so no manual installs needed)
 Access to a SLURM cluster (or adjust nextflow.config for a different executor)
 R (≥4.x) with the following packages for the downstream analysis: tidyverse, limma, edgeR, pheatmap, clusterProfiler, org.Hs.eg.db
 
